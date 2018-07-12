@@ -13,8 +13,8 @@
 #ifndef VIDEO_NL_BAYES_H_INCLUDED
 #define VIDEO_NL_BAYES_H_INCLUDED
 
-#include "../utils/lib_videot.hpp"
-#include "../utils/utilities.h"
+#include "utils/lib_videot.h"
+#include "utils/utilities.h"
 
 //#define DEBUG_SHOW_WEIGHT
 //#define DEBUG_COMPUTE_GROUP_ERROR

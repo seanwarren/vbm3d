@@ -17,15 +17,13 @@
  * @author Pablo Arias <pariasm@gmail.com>
  **/
 
-#include "lib_videot.hpp"
-
-//#include <fftw3.h>
+#include "lib_videot.h"
 #include "lib_image.h"
 
 #include <cstdio>
 #include <cstdlib> // EXIT_FAILURE
 
-
+#ifndef WIN32
 template <> 
 void Video<float>::loadVideo(
     const std::string i_pathToFiles
@@ -160,4 +158,4 @@ void Video<float>::saveVideoAscii(
 	}
 	return;
 }
-
+#endif

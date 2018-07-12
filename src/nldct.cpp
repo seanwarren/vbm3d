@@ -22,7 +22,7 @@
 
 #include "nldct.h"
 #include "matrix_funs.h"
-#include "utilities.h"
+#include "utils/utilities.h"
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -1355,8 +1355,8 @@ unsigned estimateSimilarPatchesStep1(
 					int ct = traj_ct[i][dt - dir];
 					float cxf = cx + (use_flow ? (dir > 0 ? fflow(cx,cy,ct,0) : bflow(cx,cy,ct,0)) : 0.f);
 					float cyf = cy + (use_flow ? (dir > 0 ? fflow(cx,cy,ct,1) : bflow(cx,cy,ct,1)) : 0.f);
-					cx0.push_back(std::max(0., std::min((double)sz.width  - 1, round(cxf))));
-					cy0.push_back(std::max(0., std::min((double)sz.height - 1, round(cyf))));
+					cx0.push_back(std::max(0.f, std::min((float)sz.width  - 1, round(cxf))));
+					cy0.push_back(std::max(0.f, std::min((float)sz.height - 1, round(cyf))));
 				}
 			}
 			else
@@ -1821,8 +1821,8 @@ unsigned estimateSimilarPatchesStep2(
 					int ct = traj_ct[i][dt - dir];
 					float cxf = cx + (use_flow ? (dir > 0 ? fflow(cx,cy,ct,0) : bflow(cx,cy,ct,0)) : 0.f);
 					float cyf = cy + (use_flow ? (dir > 0 ? fflow(cx,cy,ct,1) : bflow(cx,cy,ct,1)) : 0.f);
-					cx0.push_back(std::max(0., std::min((double)sz.width  - 1, round(cxf))));
-					cy0.push_back(std::max(0., std::min((double)sz.height - 1, round(cyf))));
+					cx0.push_back(std::max(0.f, std::min((float)sz.width  - 1, round(cxf))));
+					cy0.push_back(std::max(0.f, std::min((float)sz.height - 1, round(cyf))));
 				}
 			}
 			else

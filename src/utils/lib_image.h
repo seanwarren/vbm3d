@@ -34,6 +34,7 @@ struct ImageSize
 	unsigned whc;
 };
 
+#ifndef WIN32
 /**
  * @brief Load image, check the number of channels.
  *
@@ -68,6 +69,7 @@ int saveImage(
 ,   const float p_min
 ,   const float p_max
 );
+#endif
 
 /**
  * @brief add noise to img.

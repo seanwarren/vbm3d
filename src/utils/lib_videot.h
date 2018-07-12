@@ -19,7 +19,7 @@
 #include <climits>
 #include <cstdio>
 #include <cmath>
-#include <unistd.h>
+//#include <unistd.h>
 
 
 #include "mt19937ar.h"
@@ -176,8 +176,10 @@ class Video
 		void saveVideo(const std::string i_pathToFiles, 
 		               unsigned i_firstFrame, unsigned i_frameStep = 1,
 		               T i_pmin = 0, T i_pmax = 255) const;
-		void saveVideoAscii(const std::string i_prefix, 
-		                    unsigned i_firstFrame, unsigned i_frameStep = 1) const;
+
+      void saveVideoAscii(const std::string i_prefix,
+                          unsigned i_firstFrame,
+                          unsigned i_frameStep) const;
 };
 
 // Implementations
@@ -270,6 +272,7 @@ void Video<T>::resize(
 	resize(VideoSize(i_width, i_height, i_frames, i_channels));
 }
 	
+
 template <class T> 
 void Video<T>::loadVideo(
     const std::string i_pathToFiles
@@ -281,12 +284,6 @@ void Video<T>::loadVideo(
 			"for T = float");
 }
 
-template <> void Video<float>::loadVideo(
-    const std::string i_pathToFiles
-,   unsigned i_firstFrame
-,   unsigned i_lastFrame
-,   unsigned i_frameStep
-);
 
 template <class T> 
 void Video<T>::saveVideo(
@@ -300,16 +297,9 @@ void Video<T>::saveVideo(
 			"for T = float");
 }
 
-template <> void Video<float>::saveVideo(
-	const std::string i_pathToFiles
-,	unsigned i_firstFrame
-,	unsigned i_frameStep
-,	float i_pmin
-,	float i_pmax
-) const;
-	
+
 template <class T> 
-void Video<T>::saveVideoAscii(
+inline void Video<T>::saveVideoAscii(
 	const std::string i_prefix
 ,	unsigned i_firstFrame
 ,	unsigned i_frameStep
@@ -317,12 +307,6 @@ void Video<T>::saveVideoAscii(
 	throw std::runtime_error("Video<T>::saveVideoAscii(...) is only implemented "
 			"for T = float");
 }
-
-template <> void Video<float>::saveVideoAscii(
-	const std::string i_prefix
-,	unsigned i_firstFrame
-,	unsigned i_frameStep
-) const;
 
 template <class T>
 inline T& Video<T>::operator () (unsigned idx) 
@@ -488,10 +472,10 @@ namespace VideoUtils
 
 		//! Initialization
 		o_vidNoisy = i_vid;
-		mt_init_genrand((unsigned long int) time (NULL) +
-		                (unsigned long int) getpid());
-//		mt_init_genrand(0);
-//		fprintf(stderr, "\x1b[33;1mWarning:\x1b[0m random generator seed is 0\n");
+//		mt_init_genrand((unsigned long int) time (NULL) +
+//		                (unsigned long int) getpid());
+		mt_init_genrand(0);
+		fprintf(stderr, "\x1b[33;1mWarning:\x1b[0m random generator seed is 0\n");
 
 		//! Add noise
 		for (unsigned k = 0; k < i_vid.sz.whcf; k++)

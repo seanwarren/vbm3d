@@ -21,18 +21,20 @@
 #include "utilities.h"
 #include "mt19937ar.h"
 
-#include <unistd.h> // getpid
+//#include <unistd.h> // getpid
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
 #include <math.h>
 #include <omp.h>
 
+using namespace std;
+
+#ifndef WIN32
+
 extern "C" {
 #include "iio.h"
 }
-
-using namespace std;
 
 /**
  * @brief Load image, check the number of channels.
@@ -130,6 +132,9 @@ int saveImage(
 
     return EXIT_SUCCESS;
 }
+
+#endif
+
 
 /**
  * @brief add noise to img.
