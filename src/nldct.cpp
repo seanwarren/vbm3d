@@ -95,16 +95,16 @@ void initializeNlbParameters(
 			params.sizePatch = 8; 
 			params.nSimilarPatches = s1 ? 16 : 32;
 			params.offSet = 3;
-			params.beta = s1 ? 2.7 : 1.; // FIXME: beta here means the threshold
-			params.tau = s1 ? 54.8 : 20.;
+			params.beta = s1 ? 2.7f : 1.f; // FIXME: beta here means the threshold
+			params.tau = s1 ? 54.8f : 20.f;
 		}
 		else // vn profile
 		{
 			params.sizePatch = s1 ? 8 : 11; 
 			params.nSimilarPatches = 32;
 			params.offSet = s1 ? 4 : 6;
-			params.beta = s1 ? 2.8 : 1.;
-			params.tau = s1 ? 158. : 59.2;
+			params.beta = s1 ? 2.8f : 1.f;
+			params.tau = s1 ? 158.f : 59.2f;
 		}
 
 		params.sizePatchTime = 1;
@@ -130,9 +130,9 @@ void initializeNlbParameters(
 		params.nSimilarPatchesPred = 2;
 		params.offSet = s1 ? 6 : 4;
 		params.offSetTime = 1;
-		params.beta = s1 ? 2.7 : 1.;
-		params.tau = s1 ? 67.1 : 54.8; // TODO this is only true for high noise
-		params.dsub = s1 ? 7 : 3;
+		params.beta = s1 ? 2.7f : 1.f;
+		params.tau = s1 ? 67.1f : 54.8f; // TODO this is only true for high noise
+		params.dsub = s1 ? 7.f : 3.f;
 	}
 
 	// these params are common for vbm3d and bm3d
@@ -439,7 +439,7 @@ std::vector<float> runNlBayes(
 		if (p_prms1.verbose)
 		{
 			printf("1st Step\n");
-			for (int p = 0; p < nParts; ++p) printf("\n");
+			for (unsigned int p = 0; p < nParts; ++p) printf("\n");
 		}
 
 		//! RGB to YUV
@@ -590,9 +590,9 @@ std::vector<float> runNlBayes(
 	{
 		if (p_prms2.verbose)
 		{
-			if (step == 2) for (int p = 0; p <= nParts; ++p) printf("\n");
+			if (step == 2) for (unsigned int p = 0; p <= nParts; ++p) printf("\n");
 			printf("\x1b[%dF2nd Step\n",nParts+1);
-			for (int p = 0; p < nParts; ++p) printf("\x1b[2K\n");
+			for (unsigned int p = 0; p < nParts; ++p) printf("\x1b[2K\n");
 		}
 
 		//! RGB to YUV
